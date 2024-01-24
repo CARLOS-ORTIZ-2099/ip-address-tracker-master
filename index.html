@@ -11,36 +11,48 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
 
   <title>Frontend Mentor | IP Address Tracker</title>
 
-
 </head>
 <body>
 
-<!--   IP Address Tracker
+  <main class="main">
 
- 
+    <div class="back-ground-image">
+      <div class="form-container">
+        <h2>IP Address Tracker</h2>
+        <form class="form" action="">
+          <input class="inputIp" type="text" placeholder="Search for any IP address or domain">
+          <button class="button-submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14"><path fill="none" stroke="#FFF" stroke-width="3" d="M2 1l6 6-6 6"/></svg>
+          </button>
+         
+        </form>
+      </div>
 
-  IP Address
-  Location
-  Timezone
-    UTC 
-  ISP -->
-  
-  <form class="form" action="">
-      <input class="inputIp" type="text" placeholder="Search for any IP address or domain">
-      <input type="submit" value="send">
-  </form>
+      <div class="data-container">
 
-  <div class="data-container">
+      </div>
 
-  </div>
+    </div>
+   
 
-  <div id="map">
 
-  </div>
+    <div id="map">
+
+    </div>
+
+    
+
+
+  </main>
 
 
 <!--   <div class="attribution">

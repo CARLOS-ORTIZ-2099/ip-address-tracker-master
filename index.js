@@ -73,15 +73,13 @@ var circle = L.circle([lat, long], {
 }
 
 
-
 function renderData({ip, isp, location}) {
    dataContainer.innerHTML = `
-     <div>
-         <h1>${ip}</h1>
-         <h1>${isp}</h1>
-         <h1>${location.city}</h1>
-         <h1>${location.region}</h1>
-         <h1>UTC ${location.timezone}</h1>
+     <div class = 'info-ip'>
+         <div> <span>IP Address<span/> <p>${ip}</p> </div>
+         <div> <span>Location</span> <p>${location.city}, ${location.region}</p> </div>
+         <div> <span>Timezone </span> <p>UTC ${location.timezone}</p> </div>
+         <div> <span>ISP </span> <p>${isp}</p> </div>     
      </div>
    `
 }
