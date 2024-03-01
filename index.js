@@ -22,7 +22,7 @@ async function ApiPetition(dataIp = localStorage.getItem('ip')? localStorage.get
    localStorage.setItem('ip',dataIp)
    try{
         const response = await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=${APIKEY}&ipAddress=${dataIp}`)
-        console.log(response);
+       // console.log(response);
         if(!response.ok){
             let error = new Error('error detected')
             error.stattus = response.status || '000'
@@ -31,7 +31,7 @@ async function ApiPetition(dataIp = localStorage.getItem('ip')? localStorage.get
         }
         const data = await response.json()
         info = {ip :data.ip, isp : data.isp, location : data.location}
-        console.log(info);
+       // console.log(info);
         renderData(info)
         showMap(data.location.lat, data.location.lng)
    }catch(error){
@@ -42,6 +42,10 @@ async function ApiPetition(dataIp = localStorage.getItem('ip')? localStorage.get
 
 
 document.addEventListener('DOMContentLoaded',  () => ApiPetition())
+document.addEventListener('DOMContentLoaded',  ()=> {
+   alert('mira la consola para mas ips')
+   console.log('ips : 192.250.123.101;  70.150.100.200; 192.212.174.101');
+})
 
 function showMap(lat, long ){
 /* creando el mapa
@@ -99,4 +103,4 @@ function errorData({message, stattus, stattusText}) {
 
 
 
-// ips : 192.250.123.101;  70.150.100.200
+// ips : 192.250.123.101;  70.150.100.200; 192.212.174.101
