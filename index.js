@@ -35,7 +35,7 @@ async function ApiPetition(dataIp = localStorage.getItem('ip')? localStorage.get
         renderData(info)
         showMap(data.location.lat, data.location.lng)
    }catch(error){
-        console.log(error);
+       // console.log(error);
         errorData(error)
    }
 }
