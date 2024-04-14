@@ -1,16 +1,16 @@
 const APIKEY = 'at_fygiHiK8gQjAPkcYaUxa0Y4xsM2M9'
 const form = document.querySelector('.form')
 const inputIp = document.querySelector('.inputIp')
-const ip = '192.212.174.101'
 const mapContainer  = document.getElementById('map')
 const dataContainer = document.querySelector('.data-container')
+let ip = '192.212.174.101'
 let map = L.map(mapContainer)
 let info = {}
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
     if(inputIp.value.length < 1) {
-        alert('inserta un valor')
+        alert('inserta una ip')
         return
     }
     ApiPetition(inputIp.value)
@@ -18,15 +18,14 @@ form.addEventListener('submit', (e) => {
 } )
 
 
-async function ApiPetition(dataIp = localStorage.getItem('ip')? localStorage.getItem('ip') : ip) {
-   localStorage.setItem('ip',dataIp)
+async function ApiPetition(dataIp = localStorage.getItem('ip') ||  ip) {
    try{
         const response = await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=${APIKEY}&ipAddress=${dataIp}`)
        // console.log(response);
         if(!response.ok){
             let error = new Error('error detected')
             error.stattus = response.status || '000'
-            error.stattusText = response.statusText || 'message custom'
+            error.stattusText = response.statusText || 'ip uncknown'
             throw error
         }
         const data = await response.json()
@@ -34,18 +33,12 @@ async function ApiPetition(dataIp = localStorage.getItem('ip')? localStorage.get
        // console.log(info);
         renderData(info)
         showMap(data.location.lat, data.location.lng)
+        localStorage.setItem('ip',dataIp)
    }catch(error){
        // console.log(error);
         errorData(error)
    }
 }
-
-
-document.addEventListener('DOMContentLoaded',  () => ApiPetition())
-document.addEventListener('DOMContentLoaded',  ()=> {
-   alert('mira la consola para mas ips')
-   console.log('ips : 192.250.123.101;  70.150.100.200; 192.212.174.101');
-})
 
 function showMap(lat, long ){
 /* creando el mapa
@@ -93,14 +86,21 @@ function errorData({message, stattus, stattusText}) {
    console.log(stattus);
    console.log(stattusText);
    dataContainer.innerHTML = `
-      <div>
-         <h1>${message}</h1>
-         <h1>${stattus}</h1>
-         <h1>${stattusText}</h1>
+      <div class ='error-message'>
+         <div>
+            <h1>${message}</h1>
+            <h1>${stattus}</h1>
+            <h1>${stattusText}</h1>
+            </div>
+         </div>
       </div>
    `
 }
 
-
+document.addEventListener('DOMContentLoaded',  () => ApiPetition())
+document.addEventListener('DOMContentLoaded',  ()=> {
+   alert('mira la consola para mas ips')
+   console.log('ips : 192.250.123.101;  70.150.100.200; 192.212.174.101');
+})
 
 // ips : 192.250.123.101;  70.150.100.200; 192.212.174.101
