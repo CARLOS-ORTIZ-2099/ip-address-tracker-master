@@ -13,7 +13,7 @@ form.addEventListener("submit", (e) => {
     alert("inserta una ip");
     return;
   }
-  ApiPetition(inputIp.value);
+  // ApiPetition(inputIp.value);
   e.target.reset();
 });
 
